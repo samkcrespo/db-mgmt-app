@@ -15,11 +15,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="forecast in post" :key="forecast.date">
+                    <!--<tr v-for="forecast in post" :key="forecast.date">
                         <td>{{ forecast.date }}</td>
                         <td>{{ forecast.temperatureC }}</td>
                         <td>{{ forecast.temperatureF }}</td>
-                        <td>{{ forecast.summary }}</td>
+                        <td>{{ forecast.summary }}</td>-->
                     </tr>
                 </tbody>
             </table>
