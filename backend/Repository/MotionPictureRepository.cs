@@ -13,9 +13,24 @@ namespace backend.Repository
             _context = context;
         }
 
+        public MotionPicture GetMotionPicture(int id)
+        {
+            return _context.MotionPictures.Where(m => m.Id == id).FirstOrDefault();
+        }
+
+        public MotionPicture GetMotionPicture(string name)
+        {
+            return _context.MotionPictures.Where(m => m.Name == name).FirstOrDefault();
+        }
+
         public ICollection<MotionPicture> GetMotionPictures()
         {
             return _context.MotionPictures.OrderBy(m => m.Id).ToList();
+        }
+
+        public bool MotionPictureExists(int mpId)
+        {
+            return _context.MotionPictures.Any(m => m.Id == mpId);
         }
     }
 }
