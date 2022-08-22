@@ -1,83 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using backend.Interfaces;
+using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class MotionPictureController : Controller
     {
-        // GET: MotionPictureController
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly IMotionPictureRepository _motionPictureRepository;
 
-        // GET: MotionPictureController/Details/5
-        public ActionResult Details(int id)
+        public MotionPictureController(IMotionPictureRepository motionPictureRepository)
         {
-            return View();
+            _motionPictureRepository = motionPictureRepository;
         }
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<MotionPicture>))]
 
-        // GET: MotionPictureController/Create
-        public ActionResult Create()
+        public IActionResult GetMotionPictures()
         {
-            return View();
-        }
-
-        // POST: MotionPictureController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MotionPictureController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MotionPictureController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MotionPictureController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MotionPictureController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var motionPictures = _motionPictureRepository.GetMotionPictures();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(motionPictures);
         }
     }
 }
