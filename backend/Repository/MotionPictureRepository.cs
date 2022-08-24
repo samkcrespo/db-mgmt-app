@@ -13,16 +13,14 @@ namespace backend.Repository
             _context = context;
         }
 
-        //public bool CreateMotionPicture(MotionPicture motionpicture)
-        //{
-        //    var MotionPicture = new MotionPicture()
-        //    {
-        //        MotionPicture = motionpicture,
-        //    };
-        //    _context.Add(motionpicture);
+        public bool CreateMotionPicture(MotionPicture motionpicture)
+        {
 
-        //    return Save();
-        //}
+            _context.Add(motionpicture);
+            return Save();
+
+
+        }
 
         //public bool DeleteMotionPicture(MotionPicture motionpicture)
         //{
