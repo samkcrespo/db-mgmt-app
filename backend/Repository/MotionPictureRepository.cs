@@ -15,12 +15,9 @@ namespace backend.Repository
 
         public bool CreateMotionPicture(MotionPicture motionpicture)
         {
-
-            _context.Add(motionpicture);
-            return Save();
-
-
-        }
+             _context.Add(motionpicture);
+             return Save();
+ }
 
         //public bool DeleteMotionPicture(MotionPicture motionpicture)
         //{
@@ -54,12 +51,14 @@ namespace backend.Repository
             return saved > 0 ? true : false;
         }
 
-        //public bool UpdateMotionPicture(MotionPicture motionpicture)
-        //{
-        //    _context.Update(motionpicture);
-        //    return Save();
-        //}
 
-       
+
+        public bool UpdateMotionPicture(MotionPicture motionpicture)
+        {
+            _context.Update(motionpicture);
+            return Save();
+        }
+
+
     }
 }

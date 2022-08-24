@@ -9,6 +9,7 @@ namespace backend.Helpers
         public MappingProfile()
         {
             CreateMap<MotionPicture, MotionPictureDto>();
+            CreateMap<MotionPictureDto, MotionPicture>();
         }
     }
 }
