@@ -19,11 +19,11 @@ namespace backend.Repository
              return Save();
  }
 
-        //public bool DeleteMotionPicture(MotionPicture motionpicture)
-        //{
-        //    _context.Remove(motionpicture);
-        //    return Save();
-        //}
+        public bool DeleteMotionPicture(MotionPicture motionpicture)
+        {
+            _context.Remove(motionpicture);
+            return Save();
+        }
 
         public MotionPicture GetMotionPicture(int id)
         {
