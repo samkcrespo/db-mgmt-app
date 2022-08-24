@@ -35,9 +35,9 @@ namespace backend.Controllers
 
         public IActionResult GetMotionPicture(int mpId)
         {
-            //if (!_motionPictureRepository.MotionPictureExists(mpId))
+            if (!_motionPictureRepository.MotionPictureExists(mpId))
 
-            //    return NotFound();
+                return NotFound();
 
             var mp = _mapper.Map<MotionPictureDto>(_motionPictureRepository.GetMotionPicture(mpId));
 
@@ -47,6 +47,33 @@ namespace backend.Controllers
 
             return Ok(mp);
 
+        }
+
+        [HttpDelete("{mpId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteMotionPicture(int mpId)
+        {
+            if (!_motionPictureRepository.MotionPictureExists(mpId))
+            {
+                return NotFound();
+            }
+
+            
+            var motionPictureToDelete = _motionPictureRepository.GetMotionPicture(mpId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+           
+
+            if (!_motionPictureRepository.DeleteMotionPicture(motionPictureToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting Motion Picture");
+            }
+
+            return NoContent();
         }
     }
 }
